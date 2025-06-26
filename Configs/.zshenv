@@ -265,21 +265,21 @@ function _load_if_terminal {
 
         # Currently We are loading Starship and p10k prompts on start so users can see the prompt immediately
 
-        if command -v starship &>/dev/null; then
-            # ===== START Initialize Starship prompt =====
-            eval "$(starship init zsh)"
-            export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
-            export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
-        # ===== END Initialize Starship prompt =====
-        elif [ -r $HOME/.p10k.zsh ]; then
-            # ===== START Initialize Powerlevel10k theme =====
-            POWERLEVEL10K_TRANSIENT_PROMPT=same-dir
-            P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
-            [[ -r $P10k_THEME ]] && source $P10k_THEME
-            # To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh
-            [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
-        # ===== END Initialize Powerlevel10k theme =====
-        fi
+        # if command -v starship &>/dev/null; then
+        #     # ===== START Initialize Starship prompt =====
+        #     eval "$(starship init zsh)"
+        #     export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+        #     export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+        # # ===== END Initialize Starship prompt =====
+        # elif [ -r $HOME/.p10k.zsh ]; then
+        #     # ===== START Initialize Powerlevel10k theme =====
+        #     POWERLEVEL10K_TRANSIENT_PROMPT=same-dir
+        #     P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
+        #     [[ -r $P10k_THEME ]] && source $P10k_THEME
+        #     # To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh
+        #     [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+        # # ===== END Initialize Powerlevel10k theme =====
+        # fi
 
         # Optionally load user configuration // useful for customizing the shell without modifying the main file
         if [[ -f $HOME/.hyde.zshrc ]]; then
@@ -289,18 +289,18 @@ function _load_if_terminal {
         fi
 
         # Load plugins
-        _load_zsh_plugins
+        #_load_zsh_plugins
 
         # Load zsh hooks module once
 
         #? Methods to load oh-my-zsh lazily
-        __ZDOTDIR="${ZDOTDIR:-$HOME}"
-        ZDOTDIR=/tmp
-        zle -N zle-line-init _load_omz_on_init # Loads when the line editor initializes // The best option
+        #__ZDOTDIR="${ZDOTDIR:-$HOME}"
+        #ZDOTDIR=/tmp
+        #zle -N zle-line-init _load_omz_on_init # Loads when the line editor initializes // The best option
 
         #  Below this line are the commands that are executed after the prompt appears
 
-        autoload -Uz add-zsh-hook
+        #autoload -Uz add-zsh-hook
         # add-zsh-hook zshaddhistory load_omz_deferred # loads after the first command is added to history
         # add-zsh-hook precmd load_omz_deferred # Loads when shell is ready to accept commands
         # add-zsh-hook preexec load_omz_deferred # Loads before the first command executes
@@ -311,7 +311,7 @@ function _load_if_terminal {
         # po='yay -Qtdq | ${PM_COMMAND[@]} -Rns -' # remove orphaned packages
 
         # Warn if the shell is slow to load
-        add-zsh-hook -Uz precmd _slow_load_warning
+        #add-zsh-hook -Uz precmd _slow_load_warning
 
         alias c='clear' \
             in='${PM_COMMAND[@]} install' \
@@ -364,12 +364,12 @@ LESSHISTFILE=${LESSHISTFILE:-/tmp/less-hist}
 PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # History configuration // explicit to not nuke history
-HISTFILE=${HISTFILE:-$HOME/.zsh_history}
-HISTSIZE=10000
-SAVEHIST=10000
+# HISTFILE=${HISTFILE:-$HOME/.zsh_history}
+# HISTSIZE=10000
+# SAVEHIST=10000
 setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format
 setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits
 setopt SHARE_HISTORY          # Share history between all sessions
